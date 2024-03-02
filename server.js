@@ -4,7 +4,7 @@ const cors = require('cors')
 require('dotenv').config()
 const moviesDB = require('./modules/moviesDB.js')
 const db = new moviesDB()
-const HTTP_PORT = 8080
+const HTTP_PORT = process.env.HTTP_PORT || 8080
 
 // initialize the db and wait till the connection is established, then start the server
 db.inititalize(process.env.MONGODB_CONN_STRING).then(() => {
