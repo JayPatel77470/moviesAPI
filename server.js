@@ -12,7 +12,7 @@ db.inititalize(process.env.MONGODB_CONN_STRING).then(() => {
         console.log(`Server running at https://localhost:${HTTP_PORT}`)
     })
 }).catch((err) => {
-    console.log(err)
+    console.log({message: 'Connection with Mongoose failed', err})
 })
 
 
