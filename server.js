@@ -4,18 +4,7 @@ const cors = require('cors')
 require('dotenv').config()
 const moviesDB = require('./modules/moviesDB.js')
 const db = new moviesDB()
-const HTTP_PORT = process.env.port || 8080
-
-// initialize the db and wait till the connection is established, then start the server
-db.inititalize(process.env.MONGODB_CONN_STRING).then(() => {
-    app.listen(HTTP_PORT, () => {
-        console.log(`Server running at https://localhost:${HTTP_PORT}`)
-    })
-}).catch((err) => {
-    console.log({message: 'Connection with Mongoose failed', err})
-})
-
-
+const HTTP_PORT = process.env.PORT || 8000
 
 // middleware function that gives permission to other webpages to access our 
 // data and gives us the permission to access data from other sites.
@@ -88,4 +77,14 @@ app.delete('/api/movies/:id', (req, res) => {
     }).catch((err) => {
         res.status(500).json(err)
     })
+})
+
+
+// initialize the db and wait till the connection is established, then start the server
+db.inititalize(process.env.MONGODB_CONN_STRING).then(() => {
+    app.listen(HTTP_PORT, () => {
+        console.log(`Server running at http://localhost:${HTTP_PORT}`)
+    })
+}).catch((err) => {
+    console.log({message: 'Connection with Mongoose failed', err})
 })
