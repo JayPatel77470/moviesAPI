@@ -82,6 +82,7 @@ app.delete('/api/movies/:id', (req, res) => {
 
 // initialize the db and wait till the connection is established, then start the server
 db.inititalize(process.env.MONGODB_CONN_STRING).then(() => {
+    console.log('PORT is assigned sucessfully.')
     app.listen(HTTP_PORT, () => {
         console.log(`Server running at http://localhost:${HTTP_PORT}`)
     })
